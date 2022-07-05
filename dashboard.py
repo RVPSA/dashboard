@@ -20,3 +20,6 @@ st.set_page_config(
 
 #title of the page inside the
 st.title("Real-Time Medical Dashboard")
+
+#make empty body
+placeholder = st.empty()
