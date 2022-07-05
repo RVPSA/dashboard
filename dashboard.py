@@ -26,4 +26,9 @@ placeholder = st.empty()
 
 while True:
     bpm = firebase.get('/test/a', '')
-    spo2 =  firebase.get('/test/b', '')
+    spo2 =  firebase.get('/test/b', '') #get values from the databse
+
+    with placeholder.container():
+        kpi1 = st.columns(1) #creation of kpi
+
+        kpi1.metric(label = "BPM", value = bpm)
