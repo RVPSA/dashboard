@@ -11,9 +11,12 @@ print(bpm)
 #also reaname the import location of the async file as async_ inside the firebase and _init_ file which are located
 # in same path.
 
-#make title of the page
+#make title of the page(U can see this in this as the tab name)
 st.set_page_config(
     page_title='Real-Time Data Medical Dashboard',
     page_icon='✅',
     layout='wide'
 )
+
+#title of the page inside the
+st.title("Real-Time Medical Dashboard")
