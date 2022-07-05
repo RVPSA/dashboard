@@ -1,6 +1,7 @@
 # get firebase for the app install python-firebase package.
 from firebase import firebase
 import streamlit as st  #web development purpose
+import plotly.graph_objects as go
 
 
 firebase = firebase.FirebaseApplication('https://esp32-5c542-default-rtdb.firebaseio.com', None)
@@ -33,3 +34,18 @@ while True:
 
         kpi1.metric(label="BPM1 ⏳", value=bpm)
         kpi2.metric(label="SPO2 ⏳", value=spo2)
+
+        gauge1,gauge2 = st.columns(2)
+        g1 = go.Figure(
+            go.indicator(
+                mode = "gauge+number",
+                value = bpm,
+                gauge = {
+                    'axis' : {
+                        range : [None, 200]
+                    }
+                },
+                domain={'x': [0, 1], 'y': [0, 1]},
+                title = {'text':"BPM"}
+            )
+        )
