@@ -1,5 +1,6 @@
 # get firebase for the app install python-firebase package.
 from firebase import firebase
+import streamlit as st  #web development purpose
 
 
 firebase = firebase.FirebaseApplication('https://esp32-5c542-default-rtdb.firebaseio.com', None)
@@ -9,3 +10,10 @@ print(bpm)
 #rename 'async' file as 'async_' which is in this path C:\Users\mrsak\OneDrive\Desktop\dashboard\venv\Lib\site-packages\firebase
 #also reaname the import location of the async file as async_ inside the firebase and _init_ file which are located
 # in same path.
+
+#make title of the page
+st.set_page_config(
+    page_title='Real-Time Data Medical Dashboard',
+    page_icon='✅',
+    layout='wide'
+)
