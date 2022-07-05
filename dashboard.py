@@ -29,6 +29,7 @@ while True:
     spo2 =  firebase.get('/test/b', '') #get values from the databse
 
     with placeholder.container():
-        kpi1 = st.columns(1) #creation of kpi
+        kpi1,kpi2 = st.columns(2) #creation of kpi
 
-        kpi1.metric(label = "BPM", value = bpm)
+        kpi1.metric(label="BPM1 ⏳", value=bpm)
+        kpi2.metric(label="SPO2 ⏳", value=spo2)
