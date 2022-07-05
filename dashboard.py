@@ -37,7 +37,7 @@ while True:
 
         gauge1,gauge2 = st.columns(2)
         g1 = go.Figure(
-            go.indicator(
+            go.Indicator(
                 mode = "gauge+number",
                 value = bpm,
                 gauge = {
@@ -49,3 +49,18 @@ while True:
                 title = {'text':"BPM"}
             )
         )
+        g2 = go.Figure(
+            go.Indicator(
+                mode="gauge+number",
+                value=spo2,
+                gauge={
+                    'axis': {
+                        range: [None, 200]
+                    }
+                },
+                domain={'x': [0, 1], 'y': [0, 1]},
+                title={'text': "SPO2"}
+            )
+        )
+        gauge1.plotly_chart(g1, use_container_width=True)
+        gauge2.plotly_chart(g2, use_container_width=True)
