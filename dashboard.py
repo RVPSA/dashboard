@@ -23,3 +23,7 @@ st.title("Real-Time Medical Dashboard")
 
 #make empty body
 placeholder = st.empty()
+
+while True:
+    bpm = firebase.get('/test/a', '')
+    spo2 =  firebase.get('/test/b', '')
