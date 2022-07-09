@@ -2,6 +2,7 @@
 from firebase import firebase
 import streamlit as st  #web development purpose
 import plotly.graph_objects as go
+from streamlit_option_menu import option_menu
 
 
 firebase = firebase.FirebaseApplication('https://esp32-5c542-default-rtdb.firebaseio.com', None)
