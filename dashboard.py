@@ -40,6 +40,10 @@ bpmlist = []
 spo2list = []
 timelist = []
 
+bpmlist2 = []
+spo2list2 = []
+timelist2 = []
+
 if selected == "Patient_1":
     while True:
         bpm = firebase.get('/test/a', '')
@@ -79,24 +83,21 @@ if selected == "Patient_1":
             gauge1.plotly_chart(g1, use_container_width=True)
             gauge2.plotly_chart(g2, use_container_width=True)
 
-            #lchart1, lchart2 = st.columns(2)
             trace0 = go.Scatter(
-                x = bpmlist,
-                y = timelist,
+                x = timelist,
+                y = bpmlist,
                 mode = 'lines',
                 name = 'BPM'
             )
             trace1 = go.Scatter(
-                x = spo2list,
-                y = timelist,
+                x = timelist,
+                y = spo2list,
                 mode = 'lines',
                 name = 'SPO2'
             )
             data = [trace0, trace1]
             layout = go.Layout(title = "BPM and SPO2")
             figure = go.Figure(data = data, layout = layout)
-            #lchart1.plotly_chart(figure, use_container_width=True)
-            #lchart2.plotly_chart(figure, use_container_width=True)
             st.plotly_chart(figure, use_container_width=True)
             i = i+1
 
@@ -105,6 +106,10 @@ if selected == "Patient_2":
     while True:
         bpm2 = firebase.get('/test2/a', '')
         #spo2 = firebase.get('/test/b', '')  # get values from the databse
+
+        bpmlist2.append(bpm2)
+        spo2list2.append(bpm2)
+        timelist2.append(j)
 
         with placeholder.container():
             kpi1, kpi2 = st.columns(2)  # creation of kpi
@@ -135,5 +140,23 @@ if selected == "Patient_2":
                 title={'text': "SPO2"}))
             gauge1.plotly_chart(g1, use_container_width=True)
             gauge2.plotly_chart(g2, use_container_width=True)
+
+            trace0 = go.Scatter(
+                x = timelist2,
+                y = bpmlist2,
+                mode = 'lines',
+                name = 'BPM'
+            )
+            trace1 = go.Scatter(
+                x = timelist2,
+                y = spo2list2,
+                mode = 'lines',
+                name = 'SPO2'
+            )
+            data = [trace0, trace1]
+            layout = go.Layout(title = "BPM and SPO2")
+            figure = go.Figure(data = data, layout = layout)
+            st.plotly_chart(figure, use_container_width=True)
+            j = j+1
 
 
