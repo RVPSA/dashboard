@@ -34,11 +34,20 @@ with st.sidebar:
         menu_title= "Main Menu",
         options = ["Patient_1","Patient_2"]
     )
+i = 1
+j = 1
+bpmlist = []
+spo2list = []
+timelist = []
 
 if selected == "Patient_1":
     while True:
         bpm = firebase.get('/test/a', '')
         spo2 = firebase.get('/test/b', '')  # get values from the databse
+
+        bpmlist.append(bpm)
+        spo2list.append(spo2)
+        timelist.append(i)
 
         with placeholder.container():
             kpi1, kpi2 = st.columns(2)  # creation of kpi
@@ -69,6 +78,28 @@ if selected == "Patient_1":
                 title={'text': "SPO2"}))
             gauge1.plotly_chart(g1, use_container_width=True)
             gauge2.plotly_chart(g2, use_container_width=True)
+
+            #lchart1, lchart2 = st.columns(2)
+            trace0 = go.Scatter(
+                x = bpmlist,
+                y = timelist,
+                mode = 'lines',
+                name = 'BPM'
+            )
+            trace1 = go.Scatter(
+                x = spo2list,
+                y = timelist,
+                mode = 'lines',
+                name = 'SPO2'
+            )
+            data = [trace0, trace1]
+            layout = go.Layout(title = "BPM and SPO2")
+            figure = go.Figure(data = data, layout = layout)
+            #lchart1.plotly_chart(figure, use_container_width=True)
+            #lchart2.plotly_chart(figure, use_container_width=True)
+            st.plotly_chart(figure, use_container_width=True)
+            i = i+1
+
 
 if selected == "Patient_2":
     while True:
