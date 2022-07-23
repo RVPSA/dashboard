@@ -59,7 +59,7 @@ if selected == "Patient_1":
             kpi1, kpi2 = st.columns(2)  # creation of kpi
 
             kpi1.metric(label="BPM1 🫀", value=bpm)
-            kpi2.metric(label="SPO2 🫒", value=spo2)
+            kpi2.metric(label="SPO2 % 🫒", value=spo2)
 
             gauge1, gauge2 = st.columns(2)
             g1 = go.Figure(go.Indicator(
@@ -106,7 +106,7 @@ if selected == "Patient_1":
                     'bar' : {'color' : "rgb(0,0,128)", 'thickness': 0.2}
                 },
                 domain={'x': [0, 1], 'y': [0, 1]},
-                title={'text': "SPO2 🫒"}))
+                title={'text': "SPO2 % 🫒"}))
             gauge1.plotly_chart(g1, use_container_width=True)
             gauge2.plotly_chart(g2, use_container_width=True)
 
@@ -173,7 +173,7 @@ if selected == "Patient_2":
             kpi1, kpi2 = st.columns(2)  # creation of kpi
 
             kpi1.metric(label="BPM1 🫀", value=bpm2)
-            kpi2.metric(label="SPO2 🫒", value=bpm2)
+            kpi2.metric(label="SPO2 % 🫒", value=bpm2)
 
             gauge1, gauge2 = st.columns(2)
             g1 = go.Figure(go.Indicator(
@@ -220,7 +220,7 @@ if selected == "Patient_2":
                     'bar' : {'color' : "rgb(0,0,128)", 'thickness': 0.2}
                 },
                 domain={'x': [0, 1], 'y': [0, 1]},
-                title={'text': "SPO2 🫒"}))
+                title={'text': "SPO2 % 🫒"}))
             gauge1.plotly_chart(g1, use_container_width=True)
             gauge2.plotly_chart(g2, use_container_width=True)
 
