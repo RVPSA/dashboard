@@ -66,7 +66,20 @@ if selected == "Patient_1":
                 gauge={
                     'axis': {
                         'range': [None, 200]
-                    }
+                    },
+                    'borderwidth': 3,
+                    'bordercolor': "white",
+                    'threshold' : {
+                        'line' : {'color': 'rgb(25,25,112)', 'width' : 2.0},
+                        'thickness' : 0.8,
+                        'value' : 150
+                    },
+                    'bgcolor' : "rgb(240,230,140)",
+                    'steps' : [
+                        {'range' : [0.0,50],'color':"rgb(255,99,71)"},
+                        {'range': [155, 200], 'color': "rgb(255,127,80)"}
+                    ],
+                    'bar' : {'color' : "darkblue"}
                 },
                 domain={'x': [0, 1], 'y': [0, 1]},
                 title={'text': "BPM"}))
