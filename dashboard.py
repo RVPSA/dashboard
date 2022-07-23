@@ -19,12 +19,12 @@ print(bpm2)
 #make title of the page(U can see this in this as the tab name)
 st.set_page_config(
     page_title='Real-Time Data Medical Dashboard',
-    page_icon='✅',
+    page_icon='💗',
     layout='wide'
 )
 
 #title of the page inside the
-st.title("Real-Time Medical Dashboard")
+st.title("🧑🏻‍⚕️ Real-Time Medical Dashboard 🫁")
 
 #make empty body
 placeholder = st.empty()
@@ -56,8 +56,8 @@ if selected == "Patient_1":
         with placeholder.container():
             kpi1, kpi2 = st.columns(2)  # creation of kpi
 
-            kpi1.metric(label="BPM1 ⏳", value=bpm)
-            kpi2.metric(label="SPO2 ⏳", value=spo2)
+            kpi1.metric(label="BPM1 🫀", value=bpm)
+            kpi2.metric(label="SPO2 🫒", value=spo2)
 
             gauge1, gauge2 = st.columns(2)
             g1 = go.Figure(go.Indicator(
@@ -79,20 +79,32 @@ if selected == "Patient_1":
                         {'range' : [0.0,50],'color':"rgb(255,99,71)"},
                         {'range': [155, 200], 'color': "rgb(255,127,80)"}
                     ],
-                    'bar' : {'color' : "darkblue"}
+                    'bar' : {'color' : "darkblue", 'thickness': 0.2}
                 },
                 domain={'x': [0, 1], 'y': [0, 1]},
-                title={'text': "BPM"}))
+                title={'text': "BPM 🫀"}))
             g2 = go.Figure(go.Indicator(
                 mode="gauge+number",
                 value=spo2,
                 gauge={
                     'axis': {
-                        'range': [None, 200]
-                    }
+                        'range': [None, 100]
+                    },
+                    'borderwidth': 3,
+                    'bordercolor': "white",
+                    'threshold': {
+                        'line': {'color': 'rgb(25,25,112)', 'width': 2.0},
+                        'thickness': 0.8,
+                        'value': 95
+                    },
+                    'steps': [
+                        {'range': [0.0, 90], 'color': "rgb(250,128,114)"},
+                        {'range': [90, 100], 'color': "rgb(135,206,235)"}
+                    ],
+                    'bar' : {'color' : "rgb(0,0,128)", 'thickness': 0.2}
                 },
                 domain={'x': [0, 1], 'y': [0, 1]},
-                title={'text': "SPO2"}))
+                title={'text': "SPO2 🫒"}))
             gauge1.plotly_chart(g1, use_container_width=True)
             gauge2.plotly_chart(g2, use_container_width=True)
 
@@ -127,8 +139,8 @@ if selected == "Patient_2":
         with placeholder.container():
             kpi1, kpi2 = st.columns(2)  # creation of kpi
 
-            kpi1.metric(label="BPM1 ⏳", value=bpm2)
-            kpi2.metric(label="SPO2 ⏳", value=bpm2)
+            kpi1.metric(label="BPM1 🫀", value=bpm2)
+            kpi2.metric(label="SPO2 🫒", value=bpm2)
 
             gauge1, gauge2 = st.columns(2)
             g1 = go.Figure(go.Indicator(
@@ -137,20 +149,45 @@ if selected == "Patient_2":
                 gauge={
                     'axis': {
                         'range': [None, 200]
-                    }
+                    },
+                    'borderwidth': 3,
+                    'bordercolor': "white",
+                    'threshold': {
+                        'line': {'color': 'rgb(25,25,112)', 'width': 2.0},
+                        'thickness': 0.8,
+                        'value': 150
+                    },
+                    'bgcolor': "rgb(240,230,140)",
+                    'steps': [
+                        {'range': [0.0, 50], 'color': "rgb(255,99,71)"},
+                        {'range': [155, 200], 'color': "rgb(255,127,80)"}
+                    ],
+                    'bar': {'color': "darkblue", 'thickness': 0.2}
                 },
                 domain={'x': [0, 1], 'y': [0, 1]},
-                title={'text': "BPM"}))
+                title={'text': "BPM 🫀"}))
             g2 = go.Figure(go.Indicator(
                 mode="gauge+number",
                 value=bpm2,
                 gauge={
                     'axis': {
-                        'range': [None, 200]
-                    }
+                        'range': [None, 100]
+                    },
+                    'borderwidth': 3,
+                    'bordercolor': "white",
+                    'threshold': {
+                        'line': {'color': 'rgb(25,25,112)', 'width': 2.0},
+                        'thickness': 0.8,
+                        'value': 95
+                    },
+                    'steps': [
+                        {'range': [0.0, 90], 'color': "rgb(250,128,114)"},
+                        {'range': [90, 100], 'color': "rgb(135,206,235)"}
+                    ],
+                    'bar' : {'color' : "rgb(0,0,128)", 'thickness': 0.2}
                 },
                 domain={'x': [0, 1], 'y': [0, 1]},
-                title={'text': "SPO2"}))
+                title={'text': "SPO2 🫒"}))
             gauge1.plotly_chart(g1, use_container_width=True)
             gauge2.plotly_chart(g2, use_container_width=True)
 
