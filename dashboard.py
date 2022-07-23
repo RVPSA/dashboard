@@ -3,6 +3,7 @@ from firebase import firebase
 import streamlit as st  #web development purpose
 import plotly.graph_objects as go
 from streamlit_option_menu import option_menu
+from notifypy import Notify
 
 
 firebase = firebase.FirebaseApplication('https://esp32-5c542-default-rtdb.firebaseio.com', None)
@@ -48,6 +49,7 @@ if selected == "Patient_1":
     while True:
         bpm = firebase.get('/test/a', '')
         spo2 = firebase.get('/test/b', '')  # get values from the databse
+        bpm2 = firebase.get('/test2/a', '')
 
         bpmlist.append(bpm)
         spo2list.append(spo2)
@@ -125,11 +127,42 @@ if selected == "Patient_1":
             figure = go.Figure(data = data, layout = layout)
             st.plotly_chart(figure, use_container_width=True)
             i = i+1
-
+            if bpm < 50 or bpm >150 :
+                notification = Notify()
+                notification.title = "Alert from Patient 1"
+                notification.message = "BPM alert!!!"
+                notification.audio = "alarm.wav"
+                notification.icon = "heart.png"
+                notification.send()
+            if spo2 < 90 :
+                notification = Notify()
+                notification.title = "Alert from Patient 1"
+                notification.message = "SPO2 alert!!!"
+                notification.audio = "spo2.wav"
+                notification.icon = "spo2.png"
+                notification.send()
+            #notify detail of patient2 while selected on first patient1
+            if bpm2 < 50 or bpm2 >150 :
+                notification = Notify()
+                notification.title = "Alert from Patient 2"
+                notification.message = "BPM alert!!!"
+                notification.audio = "alarm.wav"
+                notification.icon = "heart.png"
+                notification.send()
+            if bpm2 < 90 :
+                notification = Notify()
+                notification.title = "Alert from Patient 2"
+                notification.message = "SPO2 alert!!!"
+                notification.audio = "spo2.wav"
+                notification.icon = "spo2.png"
+                notification.send()
 
 if selected == "Patient_2":
     while True:
         bpm2 = firebase.get('/test2/a', '')
+
+        bpm = firebase.get('/test/a', '')
+        spo2 = firebase.get('/test/b', '')  # get values from the databse
         #spo2 = firebase.get('/test/b', '')  # get values from the databse
 
         bpmlist2.append(bpm2)
@@ -208,5 +241,34 @@ if selected == "Patient_2":
             figure = go.Figure(data = data, layout = layout)
             st.plotly_chart(figure, use_container_width=True)
             j = j+1
+            if bpm2 < 50 or bpm2 >150 :
+                notification = Notify()
+                notification.title = "Alert from Patient 2"
+                notification.message = "BPM alert!!!"
+                notification.audio = "alarm.wav"
+                notification.icon = "heart.png"
+                notification.send()
+            if bpm2 < 90 :
+                notification = Notify()
+                notification.title = "Alert from Patient 2"
+                notification.message = "SPO2 alert!!!"
+                notification.audio = "spo2.wav"
+                notification.icon = "spo2.png"
+                notification.send()
+            # notify detail of patient 1 while selected on first patient2
+            if bpm < 50 or bpm >150 :
+                notification = Notify()
+                notification.title = "Alert from Patient 1"
+                notification.message = "BPM alert!!!"
+                notification.audio = "alarm.wav"
+                notification.icon = "heart.png"
+                notification.send()
+            if spo2 < 90 :
+                notification = Notify()
+                notification.title = "Alert from Patient 1"
+                notification.message = "SPO2 alert!!!"
+                notification.audio = "spo2.wav"
+                notification.icon = "spo2.png"
+                notification.send()
 
 
