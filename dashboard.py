@@ -6,11 +6,12 @@ from streamlit_option_menu import option_menu
 from notifypy import Notify
 
 
-firebase = firebase.FirebaseApplication('https://esp32-5c542-default-rtdb.firebaseio.com', None)
+firebase = firebase.FirebaseApplication('https://embe-18fd2-default-rtdb.firebaseio.com', None)
 bpm = firebase.get('/test/a', '')
 print(bpm)
 
-bpm2 = firebase.get('/test2/a', '')
+#bpm2 = firebase.get('/test2/a', '')
+bpm2 = 60
 print(bpm2)
 #sometimes, When we run above code firsttime it can propagate and syntax error, to solve that error please
 #rename 'async' file as 'async_' which is in this path C:\Users\mrsak\OneDrive\Desktop\dashboard\venv\Lib\site-packages\firebase
@@ -49,7 +50,7 @@ if selected == "Patient_1":
     while True:
         bpm = firebase.get('/test/a', '')
         spo2 = firebase.get('/test/b', '')  # get values from the databse
-        bpm2 = firebase.get('/test2/a', '')
+        #bpm2 = firebase.get('/test2/a', '')
 
         bpmlist.append(bpm)
         spo2list.append(spo2)
@@ -159,7 +160,7 @@ if selected == "Patient_1":
 
 if selected == "Patient_2":
     while True:
-        bpm2 = firebase.get('/test2/a', '')
+        #bpm2 = firebase.get('/test2/a', '')
 
         bpm = firebase.get('/test/a', '')
         spo2 = firebase.get('/test/b', '')  # get values from the databse
